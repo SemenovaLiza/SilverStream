@@ -164,7 +164,7 @@ class FilmWork(UUIDMixin, TimeStampedMixin):
         verbose_name = _('Type')      
     )
     genres = models.ManyToManyField(Genre, through='GenreFilmWork')
-    persones = models.ManyToManyField(Person, through='PersonFilmWork')
+    persons = models.ManyToManyField(Person, through='PersonFilmWork')
 
     def __str__(self):
         return str(self.title)
@@ -203,12 +203,10 @@ class GenreFilmWork(UUIDMixin):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name = _('Created at') )
 
     class Meta:
-        indexes = [
-            UniqueIndex(fields=['film_work_id', 'genre_id'])
-        ]
         db_table = "content\".\"genre_film_work"
         verbose_name = _('GenreFilmWork')
         verbose_name_plural = _('GenreFilmWorks')
+        constraints = [models.UniqueConstraint(fields=['filmwork', 'genre'], name='unique_genre')]
 
 
 class PersonFilmWork(UUIDMixin):
@@ -224,25 +222,25 @@ class PersonFilmWork(UUIDMixin):
     role : str
         role
     """
-    film_work_id = models.ForeignKey(
+    film_work = models.ForeignKey(
         'FilmWork',
         on_delete=models.CASCADE,
         db_column='film_work_id',
-        verbose_name = _('FilmWork')
+        verbose_name = _('FilmWork'),
+        related_name='filmwork_roles'
     )
-    person_id = models.ForeignKey(
+    person = models.ForeignKey(
         'Person',
-        db_column='person_id',
         on_delete=models.CASCADE,
-        verbose_name = _('Person')
+        db_column='person_id',
+        verbose_name = _('Person'),
+        related_name='film_roles'
     )
     role = models.TextField(verbose_name = _('Role'), default='', null=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name = _('Created at'))
 
     class Meta:        
-        indexes = [
-            UniqueIndex(fields=['film_work_id', 'person_id', 'role']),
-        ]
         db_table = "content\".\"person_film_work"
         verbose_name = _('PersonFilmWork')
         verbose_name_plural = _('PersonFilmWorks')
+        constraints = [models.UniqueConstraint(fields=['filmwork', 'person', 'role'], name='unique_person')]

@@ -5,8 +5,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'movies.apps.MoviesConfig',  
-    "debug_toolbar",    
-    "django.contrib.postgres",
-    "psqlextra",
+    'django.contrib.postgres',
+    "debug_toolbar",
+    'django_extensions',
+    'movies.apps.MoviesConfig',
+    'rest_framework',
+    'django_filters'
 ]
