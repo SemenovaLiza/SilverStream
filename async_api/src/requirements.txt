@@ -1,0 +1,5 @@
+elasticsearch[async]==8.15.1
+redis>=4.2
+fastapi==0.115.0
+uvicorn==0.32.1
+orjson==3.10.7
