@@ -1,25 +1,24 @@
-# Проектная работа: диплом
+# Silver Stream streaming platform
 
-Архитектура сервиса
-![alt text](architecture.png)
+Service architecture
+![alt text](SS_Architecture.png)
 
-Запуск dev версии
-
+dev version launch
 ```
 make build-n-run
 ```
 
-ASYNC API - клиентское апи, для фронта
+ASYNC API - client's API, for front
 ```
 http://0.0.0.0:8000/api/openapi
 ```
 
-RS API - апи рекоммендательной системы
+RS API - Recommendation system API
 ```
 http://0.0.0.0:8888/api/openapi
 ```
 
-RS - внутреннее апи рекоммендательной системы
+RS - Inner API of recommendation system
 ```
 http://0.0.0.0:8080/rs/docs
 ```

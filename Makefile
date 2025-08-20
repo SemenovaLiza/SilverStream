@@ -1,10 +1,10 @@
 include deploy/.env
 
-ETL_IMAGE=cr.yandex/crpeniun2041jirjgthk/etl:latest
-ES_INITIALIZER_IMAGE=cr.yandex/crpeniun2041jirjgthk/es_initializer:latest
-ASYNC_API_IMAGE=cr.yandex/crpeniun2041jirjgthk/asyncapi:latest
-RS_IMAGE=cr.yandex/crpeniun2041jirjgthk/rs_inner_api:latest
-RS_ETL_IMAGE=cr.yandex/crpeniun2041jirjgthk/rs_etl
+ETL_IMAGE=...
+ES_INITIALIZER_IMAGE=...
+ASYNC_API_IMAGE=...
+RS_IMAGE=...
+RS_ETL_IMAGE=...
 
 ifndef ENV
 ENV = dev
@@ -65,7 +65,7 @@ upload-etl:
 	docker push ${ETL_IMAGE}
 
 sync-remote:
-	rsync -r remote/buffer/ platondmitriev@84.252.143.15:/home/platondmitriev/srv
+	rsync -r remote/buffer/ ...
 
 stop:
 	docker stop $(shell docker ps -f network=etl_net -aq)
